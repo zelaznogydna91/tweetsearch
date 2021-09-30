@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# TweetSearch
+User Requirements
+An easy way to search Twitter for keywords and retrieve a listing of the top 5 tweets, ordered by most popular, so that I can monitor trends and hashtags in my industry. (Hint: use the Twitter API query param result_type=popular)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -6,10 +8,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
-### `yarn start`
+### `npm start`
+Concurrently runs the server and the app. 
+No additional setup required. 
+
+NOTE: Remember to run `npm install` for installing the .gitignored node_modules
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Open [http://localhost:3001](http://localhost:3001) to view it in the browser.
 
 The page will reload if you make edits.\
 You will also see any lint errors in the console.

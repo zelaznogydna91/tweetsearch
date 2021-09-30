@@ -1,0 +1,88 @@
+import styled from 'styled-components/macro'
+import u from 'utils'
+
+export default {
+  TweetSearch: styled.div`
+  background-color: #F8F9F9;
+  box-sizing: border-box;
+  padding: 48px;
+  border-radius: 8px;
+  margin-top: 36px;
+  min-width: 375px;
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+  @media (max-width: 768px) {
+    grid-template-areas:
+      'header'
+      'search'
+      'hash'
+      'list';
+    padding: 0;
+    border-radius: 0;
+    margin-top: 0px;
+    background-color: ${u.Colors.secondary};
+
+    #header-wrapper {
+      padding: 0px 16px;
+    }
+
+    #search-wrapper {
+      padding: 0px 16px;
+    }
+    
+    #hashtags-wrapper {
+      margin-left: 0px;
+    }
+  }
+  grid-template-areas:
+    'header header  header  header'
+    'search search  search  hash'
+    'list   list    list    hash';
+`,
+  HeaderWrapper: styled.h4`
+  grid-area: header;
+  background-color: ${u.getColor()};
+  color: ${u.Colors.text}
+`,
+
+  SearchWrapper: styled.div`
+  grid-area: search;
+  background-color: ${u.getColor()};
+  height: fit-content;
+  margin-bottom: 24px;
+  background-color: ${u.Colors.secondary};
+`,
+  HashtagsWrapper: styled.div`
+  grid-area: hash;
+  background-color: ${u.Colors.secondary};
+  background-color: ${u.getColor()};
+  min-width: 150px;
+  box-shadow: 0 2px 10px rgb(0 0 0 / 0.2);
+  margin-bottom: 16px;
+  padding: 0 16px 16px 16px;
+  height: fit-content;
+  margin-left: 24px;
+  border-radius: 4px;
+`,
+  TweetListWrapper: styled.div`
+  grid-area: list;
+  background-color: ${u.Colors.secondary};
+  background-color: ${u.getColor()};
+  box-shadow: 0 2px 10px rgb(0 0 0 / 0.2);
+  border-radius: 4px;
+  display:flex;
+  flex-direction: column;
+`,
+  Button: styled.button`
+  background-color: transparent;
+  border: 0px ;
+  padding:24px;
+  color: ${u.Colors.linkText};
+
+  &:hover {
+      background-color: #00000010;
+  }
+`,
+}
