@@ -15,26 +15,26 @@ function App() {
   ]
   const printTodo = true
   if (printTodo) {
-    console.info('🚧 🚧 🚧 ----------- TODO LIST -----------🚧 🚧 🚧')
+    // console.info('🚧 🚧 🚧 ----------- TODO LIST -----------🚧 🚧 🚧')
     todos.forEach((todo) => {
       switch (todo[0]) {
         case 'fix':
-          console.error('❗️❗️❗️', todo[1])
+          // console.error('❗️❗️❗️', todo[1])
           break
 
         case 'implement':
-          console.warn('🛠 🛠 🛠', todo[1])
+          // console.warn('🛠 🛠 🛠', todo[1])
           break
 
         case 'nice':
-          console.info('😎💤', todo[1])
+          // console.info('😎💤', todo[1])
           break
 
         default:
           break
       }
     })
-    console.info('🚧 🚧 🚧 ----------- TODO LIST ----------- 🚫 Disable this log at src/App.js')
+    // console.info('🚧 🚧 🚧 ----------- TODO LIST ----------- 🚫 Disable this log at src/App.js')
   }
   // #endregion
   return (
