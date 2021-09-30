@@ -1,14 +1,15 @@
 const express = require('express')
 const axios = require('axios')
 
-const AUTH_TOKEN = 'Bearer AAAAAAAAAAAAAAAAAAAAAI4OHgEAAAAAlbk0HSIAqcc3havrrU9j2NeAQ34%3DzJmzwHuQerd8JJ2TeuHfqwKgBt6bK4tk93w3ocBB2vPuKMF3cG'
 const FETCH_AMOUNT = 5
 const RESULT_TYPE = 'popular'
 const LANGUAGE = 'en'
-const PORT = process.env.PORT || 3001
-const SEARCH_TWEETS_API_URL = 'https://api.twitter.com/1.1/search/tweets.json'
 
-// const regex = /https:[\w\/\.]+$/
+const PORT = process.env.PORT || 3001
+
+const AUTH_TOKEN = process.env.TWITTER_AUTH_TOKEN || 'NO TOKEN WAS PROVIDED CHECK .env config'
+const SEARCH_TWEETS_API_URL = process.env.TWITTER_SEARCH_ENDPOINT || 'https://api.twitter.com/1.1/search/tweets.json'
+
 const regex = /https:[\w/.]+$/
 const getLastUrl = (text) => (text.match(regex) || [false])[0]
 

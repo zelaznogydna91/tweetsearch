@@ -4,6 +4,8 @@ import './App.css'
 import TweetSearch from 'containers/TweetSearch'
 import twitterAPI from 'api/TwitterAPI'
 
+require('dotenv').config()
+
 function App() {
   // #region ------------------ TODOS -----------------
   // eslint-disable-next-line no-unused-vars
