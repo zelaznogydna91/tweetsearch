@@ -8,7 +8,7 @@ const LANGUAGE = 'en'
 
 const PORT = process.env.SERVER_PORT || 3001
 
-const AUTH_TOKEN = `Bearer ${process.env.TWITTER_AUTH_TOKEN}` || 'NO TOKEN WAS PROVIDED CHECK .env config'
+const AUTH_TOKEN = process.env.TWITTER_AUTH_TOKEN || 'NO TOKEN WAS PROVIDED CHECK .env config'
 const SEARCH_TWEETS_API_URL = process.env.TWITTER_SEARCH_ENDPOINT || 'https://api.twitter.com/1.1/search/tweets.json'
 
 const regex = /https:[\w/.]+$/
@@ -28,7 +28,7 @@ app.get('/api/fetchTweets', (req, res) => {
       lang:        LANGUAGE,
     },
     headers: {
-      Authorization: AUTH_TOKEN,
+      Authorization: `Bearer ${AUTH_TOKEN}`,
     },
   })
     .then((response) => {
