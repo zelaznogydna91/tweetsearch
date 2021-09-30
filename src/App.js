@@ -9,7 +9,6 @@ function App() {
   // eslint-disable-next-line no-unused-vars
   const todos = [
     ['fix', 'The search is failing when changing from regular string to hashtags. A bug in the reducer and a side effect probably.'],
-    ['fix', 'There are some instances where a tweet key is found duplicated. Possible a bug on the reducer or the way since_id is being used on the request'],
     ['implement', 'Increase test coverage'],
     ['nice', 'Increase query complexity'],
     ['nice', 'Preview Links'],
