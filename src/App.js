@@ -3,6 +3,15 @@ import 'normalize.css'
 import './App.css'
 import TweetSearch from 'containers/TweetSearch'
 import twitterAPI from 'api/TwitterAPI'
+import u from 'utils'
+
+/**
+ *
+ *  Pass: can't search for a term after searching for a previous term and loading more.
+ *  Load more never disappears. DONE
+ *  Load more button has default cursor but is clickable but hashtag
+ *   within tweet has pointer but is not clickable. DONE
+ */
 
 function App() {
   // #region ------------------ TODOS -----------------
@@ -13,7 +22,7 @@ function App() {
     ['nice', 'Increase query complexity'],
     ['nice', 'Preview Links'],
   ]
-  const printTodo = true
+  const printTodo = u.inDevMode
   if (printTodo) {
     // console.info('🚧 🚧 🚧 ----------- TODO LIST -----------🚧 🚧 🚧')
     todos.forEach((todo) => {

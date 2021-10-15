@@ -1,7 +1,10 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-console */
-import { useReducer, useMemo, useRef } from 'react'
+import {
+  useReducer, useMemo, useRef, useEffect,
+} from 'react'
 import lodash from 'lodash'
+import u from 'utils'
 
 const DEBOUNCE_DELAY = 500
 
@@ -47,6 +50,7 @@ const initialState = {
   tweets:            [],
   filteredTweets:    [],
   loadingTweets:     false,
+  snackbar:          { message: '', visible: false },
 }
 
 const ActionsTypes = {
@@ -55,13 +59,14 @@ const ActionsTypes = {
   fetchTweetsDone:     'fetchTweetsDone',
   fetchTweetsErrored:  'fetchTweetsErrored',
   updateSearchValue:   'updateSearchValue',
+  hideSnackbar:        'hideSnackbar',
 }
 
 /**
  * @param {(PublicState & PrivateState)} state
  */
 const reducer = (state, action) => {
-  console.log('ACTION', action)
+  if (u.inDevMode) console.log('ACTION', action)
 
   switch (action.type) {
     case ActionsTypes.isLoading: {
@@ -74,9 +79,11 @@ const reducer = (state, action) => {
       }
       return { ...state, ...restartUpdate, loadingTweets: !!state.searchValue }
     }
+    case ActionsTypes.hideSnackbar: {
+      return { ...state, snackbar: { message: '', visible: false } }
+    }
 
     case ActionsTypes.fetchTweetsDone: {
-      // debugger
       const prevIdSet = new Set(state.tweets.map((x) => x.id))
       const newLoadedTweets = action.tweets.filter((x) => !prevIdSet.has(x.id))
       const newTweetList = [...state.tweets, ...newLoadedTweets]
@@ -101,6 +108,12 @@ const reducer = (state, action) => {
           selectableSet.add(hash)
         })
       })
+      const snackbar = {}
+
+      if (newLoadedTweets.length === 0) {
+        snackbar.visible = true
+        snackbar.message = 'No new tweets for now...'
+      }
 
       return {
         ...state,
@@ -109,6 +122,7 @@ const reducer = (state, action) => {
         loadingTweets:     false,
         selectableFilters: [...selectableSet],
         tweets:            newTweetList,
+        snackbar,
       }
     }
 
@@ -157,7 +171,7 @@ const reducer = (state, action) => {
     }
 
     default:
-      throw new Error()
+      return state
   }
 }
 
@@ -168,7 +182,7 @@ const userActions = (loader, dispatch, activeFiltersMap, mem) => {
   }
 
   const fetchTweets = (searchString) => {
-    console.log('fetchtweets', mem.lastSearchValue, searchString)
+    if (u.inDevMode) console.log(`%cfetching tweets\n> prev: "${mem.lastSearchValue}", curr: "${searchString}"`, 'color: blue;')
 
     const shouldRestart = mem.lastSearchValue !== searchString
     mem.lastSearchValue = searchString
@@ -177,13 +191,6 @@ const userActions = (loader, dispatch, activeFiltersMap, mem) => {
     loader(getSearchQuery(searchString), mem.lastTweetId)
       .then((tweets) => {
         if (tweets.length) {
-          // mem.lastTweetId = tweets[tweets.length - 1].id
-          // Ids come ordered oldest to newest
-          // 1443632951875411968---------------5
-          // 1443632952143847427---------------4
-          // 1443632952479346689---------------3
-          // 1443632953783816198---------------2
-          // 1443632953918115848---------------1
           tweets = tweets.sort()
           mem.lastTweetId = tweets[0].id
         }
@@ -193,8 +200,7 @@ const userActions = (loader, dispatch, activeFiltersMap, mem) => {
         })
       })
       .catch((e) => {
-        console.error('Error: Fetching', e)
-        dispatch({ type: ActionsTypes.fetchTweetsErrored })
+        dispatch({ type: ActionsTypes.fetchTweetsErrored, errorMsg: e.message })
       })
   }
 
@@ -221,6 +227,14 @@ const userActions = (loader, dispatch, activeFiltersMap, mem) => {
  */
 function useTweets(loader) {
   const [state, dispatch] = useReducer(reducer, initialState)
+
+  useEffect(() => {
+    if (state.snackbar.visible) {
+      setTimeout(() => {
+        dispatch({ type: ActionsTypes.hideSnackbar })
+      }, 2500)
+    }
+  }, [state.snackbar.visible])
 
   const memRef = useRef({
     lastSearchValue: false,

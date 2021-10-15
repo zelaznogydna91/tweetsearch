@@ -46,11 +46,15 @@ app.get('/api/fetchTweets', (req, res) => {
         }
       })
       res.setHeader('Content-Type', 'application/json')
-      res.end(JSON.stringify(tweets))
+      res.end(JSON.stringify({ ok: true, tweets }))
     })
     .catch((e) => {
-    // debugger
-      console.log('e', e)
+      console.log('\nServer Error in /api/fetchTweets', e)
+      res.setHeader('Content-Type', 'application/json')
+      res.end(JSON.stringify({
+        ok:    false,
+        error: { message: e.message, stack: e.stack, axiosCfg: e.config },
+      }))
     })
 })
 

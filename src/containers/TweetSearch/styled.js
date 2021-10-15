@@ -1,5 +1,20 @@
-import styled from 'styled-components/macro'
+import styled, { keyframes, css } from 'styled-components/macro'
 import u from 'utils'
+
+const fadein = keyframes`
+  from {bottom: 0; opacity: 0;}
+  to {bottom: 30px; opacity: 1;}
+`
+const fadeout = keyframes`
+  from {bottom: 30px; opacity: 1;}
+  to {bottom: 0; opacity: 0;}
+`
+const showAnimation = css`
+  animation: ${fadein} 0.5s forwards; 
+`
+const hideAnimation = css`
+  animation: ${fadeout} 0.5s forwards; 
+`
 
 export default {
   TweetSearch: styled.div`
@@ -76,13 +91,29 @@ export default {
   flex-direction: column;
 `,
   Button: styled.button`
-  background-color: transparent;
-  border: 0px ;
-  padding:24px;
-  color: ${u.Colors.linkText};
+    background-color: transparent;
+    border: 0px ;
+    padding:24px;
+    color: ${u.Colors.linkText};
 
-  &:hover {
-      background-color: #00000010;
-  }
+    &:hover {
+        background-color: #00000010;
+    }
+`,
+  Snackbar: styled.div`
+    border-radius: 10px;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #1DA1F2;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    font-size: 17px;
+    ${(props) => (props.visible ? showAnimation : hideAnimation)}
 `,
 }

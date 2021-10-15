@@ -12,7 +12,11 @@ const ComponentName = 'HashtagList'
 const Component = (props) => {
   // eslint-disable-next-line no-unused-vars
   const {
-    hashtags, withEmptyCaption, onHashtagClick, selectionMap,
+    hashtags,
+    withEmptyCaption,
+    onHashtagClick,
+    selectionMap,
+    noAction,
   } = props
 
   return (
@@ -24,7 +28,7 @@ const Component = (props) => {
               key={hash}
               text={hash}
               selected={selectionMap[hash]}
-              onClick={() => onHashtagClick(hash)}
+              onClick={noAction ? null : () => onHashtagClick(hash)}
             />
           ),
         )
@@ -38,6 +42,7 @@ Component.propTypes = {
   onHashtagClick:   PropTypes.func,
   selectionMap:     PropTypes.object.isRequired,
   withEmptyCaption: PropTypes.bool,
+  noAction:         PropTypes.bool,
 
 }
 Component.defaultProps = {

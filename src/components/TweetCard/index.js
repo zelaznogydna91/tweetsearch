@@ -19,7 +19,7 @@ const Component = (props) => {
       <Styled.TweetContentWrapper>
         <Username text={data.username} />
         <TweetContent text={data.tweetContent} trailUrl={data.trailUrl} />
-        <HashtagList hashtags={data.hashtags} selectionMap={selectionMap} />
+        <HashtagList noAction hashtags={data.hashtags} selectionMap={selectionMap} />
       </Styled.TweetContentWrapper>
     </Styled.TweetCard>
   )

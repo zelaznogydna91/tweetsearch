@@ -13,7 +13,7 @@ const Component = (props) => {
     <Styled.TweetContent>
       <div>{text}</div>
       {trailUrl && (
-        <a href={trailUrl}>
+        <a href={trailUrl} target="_blank" rel="noreferrer">
           <span>{trailUrl}</span>
         </a>
       )}

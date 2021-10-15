@@ -19,11 +19,15 @@ const Container = (props) => {
     selectableFilters,
     filteredTweets,
     activeFiltersMap,
+    snackbar,
   } = tweetsState
 
   return (
     <Styled.TweetSearch>
       <Styled.HeaderWrapper id="header-wrapper">Tweet Feed</Styled.HeaderWrapper>
+      <Styled.Snackbar visible={snackbar.visible}>
+        {snackbar.message}
+      </Styled.Snackbar>
 
       <Styled.SearchWrapper id="search-wrapper">
         <SearchField onChange={tweetsActions.setSearchValue} searchString={searchValue} />

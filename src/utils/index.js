@@ -38,7 +38,10 @@ const Colors = {
   backdrop:            '#F8F9F9',
 }
 
+const inDevMode = !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
+
 export default {
+  inDevMode,
   getColor,
   getHashtags,
   Colors,

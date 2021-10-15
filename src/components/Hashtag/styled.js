@@ -11,9 +11,10 @@ export default {
   text-decoration: none;
   display: inline-block;
   margin: 4px 0px;
-  cursor: pointer;
+  cursor: ${(props) => (props.onClick ? 'pointer' : 'default')};
   border-radius: 16px;
   height: fit-content;
+
   
 `,
 }
