@@ -1,5 +1,6 @@
 const express = require('express')
 const axios = require('axios')
+const path = require('path')
 require('dotenv').config()
 
 const FETCH_AMOUNT = 5
@@ -15,6 +16,11 @@ const regex = /https:[\w/.]+$/
 const getLastUrl = (text) => (text.match(regex) || [false])[0]
 
 const app = express()
+
+app.use(express.static(path.join(__dirname, 'build'), {
+  etag:   true,
+  maxAge: '1m',
+}))
 
 app.get('/api/fetchTweets', (req, res) => {
   const { searchString, lastTweetId } = req.query
@@ -56,6 +62,10 @@ app.get('/api/fetchTweets', (req, res) => {
         error: { message: e.message, stack: e.stack, axiosCfg: e.config },
       }))
     })
+})
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'))
 })
 
 app.listen(PORT, () => {
