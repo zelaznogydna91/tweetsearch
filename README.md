@@ -2,7 +2,7 @@
 
 An easy way to search Twitter for keywords and retrieve a listing of the top 5 tweets, ordered by most popular, so that I can monitor trends and hashtags in my industry. (Hint: use the Twitter API query param result_type=popular)
 
-### If you want, you can [demo this](https://tweetsearch.vercel.app/).
+### If you want, you can [demo this](https://tweetsearch.vercel.app/){:target="\_blank"}.
 
 <div style="text-align:center"><img src="https://i.imgur.com/qFm8ylg.gif" />
 
