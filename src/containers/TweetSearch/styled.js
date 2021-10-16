@@ -94,7 +94,8 @@ export default {
   min-width: 150px;
   box-shadow: 0 2px 10px rgb(0 0 0 / 0.2);
   margin-bottom: 16px;
-  padding: 0 16px 16px 16px;
+  margin-top: 10px;
+  padding: 0px 16px 16px 16px;
   height: fit-content;
   margin-left: 24px;
   border-radius: 4px;
