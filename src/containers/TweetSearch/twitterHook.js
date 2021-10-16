@@ -129,9 +129,8 @@ const reducer = (state, action) => {
     case ActionsTypes.updateSearchValue: {
       return {
         ...state,
-        searchValue:   action.value,
-        loadingTweets: true,
-        allFilters:    [],
+        searchValue: action.value,
+        allFilters:  [],
       }
     }
 
@@ -182,7 +181,7 @@ const userActions = (loader, dispatch, activeFiltersMap, mem) => {
   }
 
   const fetchTweets = (searchString) => {
-    if (u.inDevMode) console.log(`%cfetching tweets\n> prev: "${mem.lastSearchValue}", curr: "${searchString}"`, 'color: blue;')
+    if (u.inDevMode) console.log(`%cfetching tweets\n> prev: "${mem.lastSearchValue}", curr: "${searchString}"`, 'color: yellow;')
 
     const shouldRestart = mem.lastSearchValue !== searchString
     mem.lastSearchValue = searchString

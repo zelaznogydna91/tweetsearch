@@ -27,7 +27,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "start": "concurrently \"node src/server.js\" \"PORT=3000 react-scripts start\"",
+    "start": "concurrently \"node server.js\" \"PORT=3000 react-scripts start\"",
     "start-server": "node src/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",

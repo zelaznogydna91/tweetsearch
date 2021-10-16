@@ -44,11 +44,14 @@ export default {
     }
 
     #search-wrapper {
-      padding: 0px 16px;
+      padding: 10px 16px;
+      top: 0;
+      margin: 0;
     }
     
     #hashtags-wrapper {
       margin-left: 0px;
+      top: 70px;
     }
   }
   grid-template-areas:
@@ -59,17 +62,32 @@ export default {
   HeaderWrapper: styled.h4`
   grid-area: header;
   background-color: ${u.getColor()};
-  color: ${u.Colors.text}
+  color: ${u.Colors.text};
+  margin-bottom: 0;
 `,
 
   SearchWrapper: styled.div`
+  position: sticky;
+  top: 0px;
   grid-area: search;
   background-color: ${u.getColor()};
   height: fit-content;
-  margin-bottom: 24px;
-  background-color: ${u.Colors.secondary};
+  margin-bottom: 0px;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  margin-left: -20px;
+  padding-right: 10px;
+  margin-right: -10px;
+  background-color: ${u.Colors.backdrop};
+  /* box-shadow: 0 2px 10px rgb(0 0 0 / 0.2); */
+  box-shadow: 0px 4px 15px ${u.Colors.backdrop};
+
+  /* background-color: green; */
 `,
   HashtagsWrapper: styled.div`
+  position: sticky;
+  top: 10px;
   grid-area: hash;
   background-color: ${u.Colors.secondary};
   background-color: ${u.getColor()};
@@ -85,6 +103,7 @@ export default {
   grid-area: list;
   background-color: ${u.Colors.secondary};
   background-color: ${u.getColor()};
+  margin-top: 4px;
   box-shadow: 0 2px 10px rgb(0 0 0 / 0.2);
   border-radius: 4px;
   display:flex;

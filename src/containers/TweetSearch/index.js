@@ -20,6 +20,7 @@ const Container = (props) => {
     filteredTweets,
     activeFiltersMap,
     snackbar,
+    loadingTweets,
   } = tweetsState
 
   return (
@@ -30,7 +31,11 @@ const Container = (props) => {
       </Styled.Snackbar>
 
       <Styled.SearchWrapper id="search-wrapper">
-        <SearchField onChange={tweetsActions.setSearchValue} searchString={searchValue} />
+        <SearchField
+          onChange={tweetsActions.setSearchValue}
+          loading={loadingTweets}
+          searchString={searchValue}
+        />
       </Styled.SearchWrapper>
 
       <Styled.HashtagsWrapper id="hashtags-wrapper">

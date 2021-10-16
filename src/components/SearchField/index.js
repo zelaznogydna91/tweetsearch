@@ -6,7 +6,7 @@ import Styled from './styled'
 const ComponentName = 'SearchField'
 
 const Component = (props) => {
-  const { onChange, searchString } = props
+  const { onChange, searchString, loading } = props
 
   const handleChange = (e) => {
     onChange(e.target.value)
@@ -15,6 +15,7 @@ const Component = (props) => {
     <Styled.SearchField>
       <img src="./images/search.png" alt="lipa" />
       <Styled.Input placeholder="Search by keyword" type="text" value={searchString} onChange={handleChange} />
+      {loading && <Styled.Spinner />}
     </Styled.SearchField>
   )
 }
@@ -22,6 +23,7 @@ const Component = (props) => {
 Component.propTypes = {
   onChange:     PropTypes.func.isRequired,
   searchString: PropTypes.string.isRequired,
+  loading:      PropTypes.bool.isRequired,
 
 }
 Component.displayName = ComponentName
